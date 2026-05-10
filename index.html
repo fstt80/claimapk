@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USER CHECKER</title>
+
+<style>
+
+body{
+  font-family:Calibri,Arial,sans-serif;
+  background:radial-gradient(circle at top,#3b2a00,#120d02);
+  padding:20px;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+}
+
+@keyframes goldPulse{
+
+  0%{
+    box-shadow:0 0 8px #ffd700,0 0 20px #ffae00;
+    border-color:#ffd700;
+  }
+
+  50%{
+    box-shadow:0 0 12px #fff3a1,0 0 28px #ffcc00;
+    border-color:#fff3a1;
+  }
+
+  100%{
+    box-shadow:0 0 8px #ffd700,0 0 20px #ffae00;
+    border-color:#ffd700;
+  }
+
+}
+
+.container{
+  width:100%;
+  max-width:520px;
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.logo img{
+  width:230px;
+  max-width:90%;
+}
+
+table{
+  border-collapse:collapse;
+  width:100%;
+  background:rgba(20,15,0,0.92);
+  border-radius:12px;
+  border:3px solid #ffd700;
+  animation:goldPulse 2s infinite;
+  overflow:hidden;
+}
+
+td{
+  border:1px solid rgba(255,255,255,0.12);
+  padding:12px;
+  font-size:14px;
+}
+
+td.label{
+  width:140px;
+  font-weight:bold;
+  color:#ffd700;
+}
+
+input{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  color:#fff;
+  font-size:14px;
+}
+
+#result{
+  margin-top:18px;
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  display:none;
+}
+
+.gas{
+  color:#00ff88;
+}
+
+.jangan{
+  color:#ffd700;
+}
+
+.loading{
+  color:#aaa;
+}
+
+.action-box{
+  margin-top:12px;
+  text-align:right;
+}
+
+#okButton{
+  display:none;
+  background:#ffd700;
+  color:black;
+  border:none;
+  padding:7px 16px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:13px;
+}
+
+#okButton:hover{
+  opacity:.9;
+}
+
+.footer{
+  margin-top:12px;
+  text-align:center;
+  color:#999;
+  font-size:12px;
+}
+
+@media(max-width:600px){
+
+  body{
+    padding:12px;
+  }
+
+  td{
+    font-size:13px;
+    padding:10px;
+  }
+
+  td.label{
+    width:110px;
+  }
+
+  .logo img{
+    width:190px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+  <img src="https://imgstore.io/images/2026/02/01/logo-utama.gif">
+</div>
+
+<form id="form" autocomplete="off">
+
+<table>
+
+<tr>
+  <td class="label">User ID</td>
+  <td>
+    <input
+      id="userid"
+      placeholder="MASUKKAN USER ID"
+      autocomplete="off"
+      autofocus>
+  </td>
+</tr>
+
+</table>
+
+<div class="action-box">
+
+<button
+  type="button"
+  id="okButton"
+  onclick="resetInput()">
+  OK
+</button>
+
+</div>
+
+<div id="result"></div>
+
+</form>
+
+<div class="footer">
+  BUAT SENDIRI BOSS !!<br>
+  JANGAN MAIN CURI 😎
+</div>
+
+</div>
+
+<script>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxwsB67nLVGU2IqWax53O9jTjdpNzNpc4OZ2n_31-gwXhWEmGevxdSgIVO20ubwM6UQ/exec";
+
+const WARNING_TEXT =
+"YANG PUNYA : OLXTT 🔥 SILAHKAN PAKAI BOS!";
+
+// popup logo
+window.addEventListener("DOMContentLoaded",()=>{
+
+  const logoImage =
+    document.querySelector(".logo img");
+
+  if(logoImage){
+
+    logoImage.addEventListener("click",()=>{
+
+      alert(WARNING_TEXT);
+
+    });
+
+  }
+
+});
+
+// gorilla fullscreen
+function showGorilla(){
+
+  if(document.getElementById("gorilla-full"))
+    return;
+
+  const div = document.createElement("div");
+
+  div.id = "gorilla-full";
+
+  div.style.position = "fixed";
+  div.style.top = "0";
+  div.style.left = "0";
+  div.style.width = "100vw";
+  div.style.height = "100vh";
+  div.style.background = "black";
+  div.style.zIndex = "999999999";
+  div.style.display = "flex";
+  div.style.justifyContent = "center";
+  div.style.alignItems = "center";
+
+  div.innerHTML = `
+    <img
+      src="https://rlv.zcache.co.uk/gorilla_finger_square_sticker-r2da3e881de9f42d298c0eeecfca328f6_zg2qg7_644.webp?rlvnet=1"
+      style="
+        width:100vw;
+        height:100vh;
+        object-fit:contain;
+      "
+    >
+  `;
+
+  document.body.appendChild(div);
+
+}
+
+// shortcut detect
+document.addEventListener("keydown",e=>{
+
+  // CTRL + U
+  if(e.ctrlKey && e.key.toLowerCase()==="u"){
+
+    e.preventDefault();
+    showGorilla();
+
+  }
+
+  // F12
+  if(e.key==="F12"){
+
+    e.preventDefault();
+    showGorilla();
+
+  }
+
+});
+
+const input =
+  document.getElementById("userid");
+
+const form =
+  document.getElementById("form");
+
+const result =
+  document.getElementById("result");
+
+const okButton =
+  document.getElementById("okButton");
+
+// check user
+async function checkUser(){
+
+  const userId = input.value.trim();
+
+  if(!userId) return;
+
+  result.style.display = "block";
+  result.className = "loading";
+  result.innerHTML = "CHECKING...";
+
+  try{
+
+    const response = await fetch(
+      API_URL +
+      "?text=" +
+      encodeURIComponent(userId)
+    );
+
+    const data = await response.json();
+
+    if(data.result === "jangan"){
+
+      result.className = "jangan";
+      result.innerHTML = "JANGAN";
+
+    }else{
+
+      result.className = "gas";
+      result.innerHTML = "GAS";
+
+    }
+
+    okButton.style.display = "inline-block";
+
+  }catch(err){
+
+    result.className = "jangan";
+    result.innerHTML = "ERROR";
+
+  }
+
+}
+
+// reset input
+function resetInput(){
+
+  input.value = "";
+
+  result.innerHTML = "";
+
+  result.style.display = "none";
+
+  okButton.style.display = "none";
+
+  input.focus();
+
+}
+
+// enter auto check
+input.addEventListener("keydown",e=>{
+
+  if(e.key==="Enter"){
+
+    e.preventDefault();
+    checkUser();
+
+  }
+
+});
+
+// submit backup
+form.addEventListener("submit",e=>{
+
+  e.preventDefault();
+  checkUser();
+
+});
+
+</script>
+
+</body>
+</html>
