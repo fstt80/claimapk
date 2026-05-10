@@ -10,7 +10,7 @@
 body{
   font-family:Calibri,Arial,sans-serif;
   background:radial-gradient(circle at top,#3b2a00,#120d02);
-  padding:20px;
+  padding:12px;
   color:#fff;
   display:flex;
   justify-content:center;
@@ -37,23 +37,23 @@ body{
 
 .container{
   width:100%;
-  max-width:520px;
+  max-width:580px;
 }
 
 .logo{
   text-align:center;
-  margin-bottom:18px;
+  margin-bottom:10px;
 }
 
 .logo img{
-  width:230px;
-  max-width:90%;
+  width:420px;
+  max-width:100%;
 }
 
 table{
   border-collapse:collapse;
   width:100%;
-  background:rgba(20,15,0,0.92);
+  background:rgba(20,15,0,0.94);
   border-radius:12px;
   border:3px solid #ffd700;
   animation:goldPulse 2s infinite;
@@ -62,29 +62,50 @@ table{
 
 td{
   border:1px solid rgba(255,255,255,0.12);
-  padding:12px;
-  font-size:14px;
+  padding:16px;
+  font-size:21px;
 }
 
 td.label{
-  width:140px;
+  width:180px;
   font-weight:bold;
   color:#ffd700;
 }
 
+.input-wrap{
+  display:flex;
+  gap:8px;
+}
+
 input{
-  width:100%;
+  flex:1;
   border:none;
   outline:none;
   background:transparent;
   color:#fff;
-  font-size:14px;
+  font-size:21px;
+}
+
+input:disabled{
+  opacity:.6;
+}
+
+#okButton{
+  display:none;
+  background:#ffd700;
+  color:black;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
 }
 
 #result{
   margin-top:18px;
   text-align:center;
-  font-size:30px;
+  font-size:52px;
   font-weight:bold;
   display:none;
 }
@@ -94,58 +115,42 @@ input{
 }
 
 .jangan{
-  color:#ffd700;
+  color:#ff3b3b;
 }
 
 .loading{
   color:#aaa;
 }
 
-.action-box{
-  margin-top:12px;
-  text-align:right;
-}
-
-#okButton{
-  display:none;
-  background:#ffd700;
-  color:black;
-  border:none;
-  padding:7px 16px;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-  font-size:13px;
-}
-
-#okButton:hover{
-  opacity:.9;
-}
-
 .footer{
-  margin-top:12px;
+  margin-top:10px;
   text-align:center;
   color:#999;
-  font-size:12px;
+  font-size:17px;
+  line-height:1.7;
 }
 
 @media(max-width:600px){
 
-  body{
-    padding:12px;
+  .logo img{
+    width:300px;
   }
 
   td{
-    font-size:13px;
-    padding:10px;
+    font-size:16px;
+    padding:12px;
   }
 
   td.label{
-    width:110px;
+    width:120px;
   }
 
-  .logo img{
-    width:190px;
+  input{
+    font-size:16px;
+  }
+
+  #result{
+    font-size:40px;
   }
 
 }
@@ -166,19 +171,20 @@ input{
 <table>
 
 <tr>
-  <td class="label">User ID</td>
-  <td>
-    <input
-      id="userid"
-      placeholder="MASUKKAN USER ID"
-      autocomplete="off"
-      autofocus>
-  </td>
-</tr>
 
-</table>
+<td class="label">
+User ID
+</td>
 
-<div class="action-box">
+<td>
+
+<div class="input-wrap">
+
+<input
+  id="userid"
+  placeholder="MASUKKAN USER ID"
+  autocomplete="off"
+  autofocus>
 
 <button
   type="button"
@@ -188,6 +194,12 @@ input{
 </button>
 
 </div>
+
+</td>
+
+</tr>
+
+</table>
 
 <div id="result"></div>
 
@@ -204,84 +216,6 @@ input{
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxwsB67nLVGU2IqWax53O9jTjdpNzNpc4OZ2n_31-gwXhWEmGevxdSgIVO20ubwM6UQ/exec";
-
-const WARNING_TEXT =
-"YANG PUNYA : OLXTT 🔥 SILAHKAN PAKAI BOS!";
-
-// popup logo
-window.addEventListener("DOMContentLoaded",()=>{
-
-  const logoImage =
-    document.querySelector(".logo img");
-
-  if(logoImage){
-
-    logoImage.addEventListener("click",()=>{
-
-      alert(WARNING_TEXT);
-
-    });
-
-  }
-
-});
-
-// gorilla fullscreen
-function showGorilla(){
-
-  if(document.getElementById("gorilla-full"))
-    return;
-
-  const div = document.createElement("div");
-
-  div.id = "gorilla-full";
-
-  div.style.position = "fixed";
-  div.style.top = "0";
-  div.style.left = "0";
-  div.style.width = "100vw";
-  div.style.height = "100vh";
-  div.style.background = "black";
-  div.style.zIndex = "999999999";
-  div.style.display = "flex";
-  div.style.justifyContent = "center";
-  div.style.alignItems = "center";
-
-  div.innerHTML = `
-    <img
-      src="https://rlv.zcache.co.uk/gorilla_finger_square_sticker-r2da3e881de9f42d298c0eeecfca328f6_zg2qg7_644.webp?rlvnet=1"
-      style="
-        width:100vw;
-        height:100vh;
-        object-fit:contain;
-      "
-    >
-  `;
-
-  document.body.appendChild(div);
-
-}
-
-// shortcut detect
-document.addEventListener("keydown",e=>{
-
-  // CTRL + U
-  if(e.ctrlKey && e.key.toLowerCase()==="u"){
-
-    e.preventDefault();
-    showGorilla();
-
-  }
-
-  // F12
-  if(e.key==="F12"){
-
-    e.preventDefault();
-    showGorilla();
-
-  }
-
-});
 
 const input =
   document.getElementById("userid");
@@ -302,6 +236,8 @@ async function checkUser(){
 
   if(!userId) return;
 
+  input.disabled = true;
+
   result.style.display = "block";
   result.className = "loading";
   result.innerHTML = "CHECKING...";
@@ -319,16 +255,16 @@ async function checkUser(){
     if(data.result === "jangan"){
 
       result.className = "jangan";
-      result.innerHTML = "JANGAN";
+      result.innerHTML = "❌ JANGAN";
 
     }else{
 
       result.className = "gas";
-      result.innerHTML = "GAS";
+      result.innerHTML = "✅ GAS";
 
     }
 
-    okButton.style.display = "inline-block";
+    okButton.style.display = "block";
 
   }catch(err){
 
@@ -339,8 +275,10 @@ async function checkUser(){
 
 }
 
-// reset input
+// reset
 function resetInput(){
+
+  input.disabled = false;
 
   input.value = "";
 
@@ -360,6 +298,9 @@ input.addEventListener("keydown",e=>{
   if(e.key==="Enter"){
 
     e.preventDefault();
+
+    if(input.disabled) return;
+
     checkUser();
 
   }
@@ -370,6 +311,9 @@ input.addEventListener("keydown",e=>{
 form.addEventListener("submit",e=>{
 
   e.preventDefault();
+
+  if(input.disabled) return;
+
   checkUser();
 
 });
